@@ -1,7 +1,6 @@
 package com.pichillilorenzo.flutter_inappbrowser;
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;

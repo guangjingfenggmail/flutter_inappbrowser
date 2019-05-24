@@ -6,19 +6,7 @@ class InlineExampleScreen extends StatefulWidget {
   _InlineExampleScreenState createState() => new _InlineExampleScreenState();
 }
 
-class Foo {
-  String bar;
-  String baz;
 
-  Foo({this.bar, this.baz});
-
-  Map<String, dynamic> toJson() {
-    return {
-      'bar': this.bar,
-      'baz': this.baz
-    };
-  }
-}
 
 class _InlineExampleScreenState extends State<InlineExampleScreen> {
   InAppWebViewController webView;
@@ -54,8 +42,8 @@ class _InlineExampleScreenState extends State<InlineExampleScreen> {
           decoration:
               BoxDecoration(border: Border.all(color: Colors.blueAccent)),
           child: InAppWebView(
-            //initialUrl: "https://flutter.dev/",
-            initialFile: "assets/index.html",
+            initialUrl: "https://now.qq.com/pcweb/topic.html?topic=%E6%96%B0%E4%BA%BA&_wv=16778245&from=98002&ADTAG=gdh-kz",
+//            initialFile: "assets/present.html",
             initialHeaders: {},
             initialOptions: {
               //"useShouldOverrideUrlLoading": true,
@@ -64,14 +52,15 @@ class _InlineExampleScreenState extends State<InlineExampleScreen> {
             onWebViewCreated: (InAppWebViewController controller) {
               webView = controller;
 
-              webView.addJavaScriptHandler('handlerFoo', (args) {
-                return new Foo(bar: 'bar_value', baz: 'baz_value');
+              webView.addJavaScriptHandler('scroll', (args) {
+                print("========="+args.toString());
+                return "11";
               });
 
-              webView.addJavaScriptHandler('handlerFooWithArgs', (args) {
-                print(args);
-                return [args[0] + 5, !args[1], args[2][0], args[3]['foo']];
-              });
+//              webView.addJavaScriptHandler('handlerFooWithArgs', (args) {
+//                print(args);
+//                return [args[0] + 5, !args[1], args[2][0], args[3]['foo']];
+//              });
             },
             onLoadStart: (InAppWebViewController controller, String url) {
               print("started $url");
