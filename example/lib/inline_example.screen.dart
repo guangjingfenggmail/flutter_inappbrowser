@@ -6,19 +6,7 @@ class InlineExampleScreen extends StatefulWidget {
   _InlineExampleScreenState createState() => new _InlineExampleScreenState();
 }
 
-class Foo {
-  String bar;
-  String baz;
 
-  Foo({this.bar, this.baz});
-
-  Map<String, dynamic> toJson() {
-    return {
-      'bar': this.bar,
-      'baz': this.baz
-    };
-  }
-}
 
 class _InlineExampleScreenState extends State<InlineExampleScreen> {
   InAppWebViewController webView;
@@ -39,23 +27,23 @@ class _InlineExampleScreenState extends State<InlineExampleScreen> {
   Widget build(BuildContext context) {
     return Container(
         child: Column(children: <Widget>[
-      Container(
-        padding: EdgeInsets.all(20.0),
-        child: Text(
-            "CURRENT URL\n${(url.length > 50) ? url.substring(0, 50) + "..." : url}"),
-      ),
-      Container( 
-        padding: EdgeInsets.all(10.0),
-        child: progress < 1.0 ? LinearProgressIndicator(value: progress) : null
-      ),
+//      Container(
+//        padding: EdgeInsets.all(20.0),
+//        child: Text(
+//            "CURRENT URL\n${(url.length > 50) ? url.substring(0, 50) + "..." : url}"),
+//      ),
+//      Container(
+//        padding: EdgeInsets.all(10.0),
+//        child: progress < 1.0 ? LinearProgressIndicator(value: progress) : null
+//      ),
       Expanded(
         child: Container(
-          margin: const EdgeInsets.all(10.0),
-          decoration:
-              BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+          margin: const EdgeInsets.only(top: 32),
+//          decoration:
+//              BoxDecoration(border: Border.all(color: Colors.blueAccent)),
           child: InAppWebView(
-            //initialUrl: "https://flutter.dev/",
-            initialFile: "assets/index.html",
+            initialUrl: "https://m.cashalo.com/help-center/",
+//            initialFile: "assets/present.html",
             initialHeaders: {},
             initialOptions: {
               //"useShouldOverrideUrlLoading": true,
@@ -64,14 +52,15 @@ class _InlineExampleScreenState extends State<InlineExampleScreen> {
             onWebViewCreated: (InAppWebViewController controller) {
               webView = controller;
 
-              webView.addJavaScriptHandler('handlerFoo', (args) {
-                return new Foo(bar: 'bar_value', baz: 'baz_value');
-              });
+//              webView.addJavaScriptHandler('scroll', (args) {
+//                print("========="+args.toString());
+//                return "11";
+//              });
 
-              webView.addJavaScriptHandler('handlerFooWithArgs', (args) {
-                print(args);
-                return [args[0] + 5, !args[1], args[2][0], args[3]['foo']];
-              });
+//              webView.addJavaScriptHandler('handlerFooWithArgs', (args) {
+//                print(args);
+//                return [args[0] + 5, !args[1], args[2][0], args[3]['foo']];
+//              });
             },
             onLoadStart: (InAppWebViewController controller, String url) {
               print("started $url");
@@ -112,35 +101,35 @@ class _InlineExampleScreenState extends State<InlineExampleScreen> {
           ),
         ),
       ),
-      ButtonBar(
-        alignment: MainAxisAlignment.center,
-        children: <Widget>[
-          RaisedButton(
-            child: Icon(Icons.arrow_back),
-            onPressed: () {
-              if (webView != null) {
-                webView.goBack();
-              }
-            },
-          ),
-          RaisedButton(
-            child: Icon(Icons.arrow_forward),
-            onPressed: () {
-              if (webView != null) {
-                webView.goForward();
-              }
-            },
-          ),
-          RaisedButton(
-            child: Icon(Icons.refresh),
-            onPressed: () {
-              if (webView != null) {
-                webView.reload();
-              }
-            },
-          ),
-        ],
-      ),
+//      ButtonBar(
+//        alignment: MainAxisAlignment.center,
+//        children: <Widget>[
+//          RaisedButton(
+//            child: Icon(Icons.arrow_back),
+//            onPressed: () {
+//              if (webView != null) {
+//                webView.goBack();
+//              }
+//            },
+//          ),
+//          RaisedButton(
+//            child: Icon(Icons.arrow_forward),
+//            onPressed: () {
+//              if (webView != null) {
+//                webView.goForward();
+//              }
+//            },
+//          ),
+//          RaisedButton(
+//            child: Icon(Icons.refresh),
+//            onPressed: () {
+//              if (webView != null) {
+//                webView.reload();
+//              }
+//            },
+//          ),
+//        ],
+//      ),
     ]));
   }
 }

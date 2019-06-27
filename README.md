@@ -13,7 +13,7 @@ This plugin is inspired by the popular [cordova-plugin-inappbrowser](https://git
 ### Requirements
 - Dart sdk: ">=2.1.0-dev.7.1 <3.0.0"
 - Flutter: ">=0.10.1 <2.0.0"
-- Android: `minSdkVersion 17`
+- Android: `minSdkVersion 19`
 - iOS: `--ios-language swift`
 
 ### Note for Android

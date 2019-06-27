@@ -1,15 +1,14 @@
 package com.pichillilorenzo.flutter_inappbrowser;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Picture;
 import android.graphics.drawable.ColorDrawable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -27,8 +26,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.flutter.app.FlutterActivity;
-import io.flutter.app.FlutterApplication;
 import io.flutter.plugin.common.MethodChannel;
 
 public class InAppBrowserActivity extends AppCompatActivity {

@@ -22,21 +22,18 @@
 package com.pichillilorenzo.flutter_inappbrowser;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.os.Parcelable;
-import android.provider.Browser;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.provider.Browser;
+import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.util.Log;
 
-import com.pichillilorenzo.flutter_inappbrowser.ChromeCustomTabs.ChromeCustomTabsActivity;
-import com.pichillilorenzo.flutter_inappbrowser.ChromeCustomTabs.CustomTabActivityHelper;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -45,7 +42,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.flutter.app.FlutterApplication;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
@@ -60,7 +56,6 @@ public class InAppBrowserFlutterPlugin implements MethodCallHandler {
   public Registrar registrar;
   public static MethodChannel channel;
   public static Map<String, InAppBrowserActivity> webViewActivities = new HashMap<>();
-  public static Map<String, ChromeCustomTabsActivity> chromeCustomTabsActivities = new HashMap<>();
 
   protected static final String LOG_TAG = "IABFlutterPlugin";
 
@@ -419,29 +414,6 @@ public class InAppBrowserFlutterPlugin implements MethodCallHandler {
     extras.putString("uuid", uuid);
     extras.putSerializable("options", options);
     extras.putSerializable("headers", (Serializable) headers);
-
-    if (useChromeSafariBrowser && CustomTabActivityHelper.isAvailable(activity)) {
-      intent = new Intent(activity, ChromeCustomTabsActivity.class);
-    }
-    // check for webview fallback
-    else if (useChromeSafariBrowser && !CustomTabActivityHelper.isAvailable(activity) && !uuidFallback.isEmpty()) {
-      Log.d(LOG_TAG, "WebView fallback declared.");
-      // overwrite with extras fallback parameters
-      extras.putString("uuid", uuidFallback);
-      if (optionsFallback != null)
-        extras.putSerializable("options", optionsFallback);
-      else
-        extras.putSerializable("options", (new InAppBrowserOptions()).getHashMap());
-      extras.putSerializable("headers", (Serializable) headers);
-      intent = new Intent(activity, InAppBrowserActivity.class);
-    }
-    // native webview
-    else if (!useChromeSafariBrowser) {
-      intent = new Intent(activity, InAppBrowserActivity.class);
-    }
-    else {
-      Log.d(LOG_TAG, "No WebView fallback declared.");
-    }
 
     if (intent != null) {
       intent.putExtras(extras);
